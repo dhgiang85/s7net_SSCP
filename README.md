@@ -1,2 +1,2 @@
 # s7net_SSCP
-# Nutget : s7net pluas
+# Nutget : s7net plus
