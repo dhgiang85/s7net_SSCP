@@ -67,7 +67,9 @@ namespace PLC_PC
         private void btnConnect_Click(object sender, RoutedEventArgs e)
         {
 
-            plc = new Plc(CpuType.S7300, "192.168.0.106", 0, 2);
+            //plc = new Plc(CpuType.S7300, "192.168.0.106", 0, 2);
+            plc = new Plc(CpuType.S7300, "192.168.0.103", 0, 2);
+
             try
             {
                 plc.Open();
@@ -103,11 +105,16 @@ namespace PLC_PC
         private void RefreshTags()
         {
 
-            var u = (byte[])plc.ReadBytes(DataType.DataBlock,2,18,1);  
-            var WB_bitnumber = 2;
-            var EB_bitnumber = 3;
-            WB_Fire = (u[0] & (1 << WB_bitnumber - 1)) != 0;  
-            EB_Fire = (u[0] & (1 << EB_bitnumber - 1)) != 0;            
+            //var u = (byte[])plc.ReadBytes(DataType.DataBlock,2,18,1);  
+            //var WB_bitnumber = 3;
+            //var EB_bitnumber = 4;
+            //WB_Fire = (u[0] & (1 << WB_bitnumber - 1)) != 0;  
+            //EB_Fire = (u[0] & (1 << EB_bitnumber - 1)) != 0;     
+            //---------- Test Bom West Bound số 1--------       
+            var u = (byte[])plc.ReadBytes(DataType.DataBlock, 21, 0, 1);
+            var WB_bitnumber = 5;            
+            WB_Fire = (u[0] & (1 << WB_bitnumber - 1)) != 0;
+            
         }
     }
 }
